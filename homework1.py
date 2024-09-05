@@ -10,6 +10,8 @@
 #     else: continue
 # print(', '.join(nums))
 from idlelib.colorizer import prog_group_name_to_tag
+from lib2to3.fixes.fix_input import context
+from operator import contains
 
 # 2) написати прогу яка вибирає зі введеної строки числа і виводить їх так як вони написані
 
@@ -104,7 +106,7 @@ from idlelib.colorizer import prog_group_name_to_tag
 
 
 # 1)Дан list:
-l = [22, 3,5,2,8,2,-23, 8,23,5]
+# l = [22, 3,5,2,8,2,-23, 8,23,5]
 #   - знайти мін число
 # def min_list_num(l):
 #     return min(l)
@@ -117,13 +119,83 @@ l = [22, 3,5,2,8,2,-23, 8,23,5]
 
 #   - замінити кожне 4-те значення на 'X'
 
-def change_to_x(l):
-    print()
-
+# def change_to_x(l):
+#     print(['X' if not (i+1) % 4 else num for i, num in enumerate(l)])
+#
+# change_to_x(l)
 
 
 # 2) вивести на екран пустий квадрат з "*" сторона якого вказана як агрумент функції
+
+# def square(x):
+#     for i in range(x):
+#         if i == 0 or i == x-1:
+#             print('*'*x)
+#         else:
+#             print('*'+' '*(x-2)+'*')
+#
+# square(7)
+
 # 3) вывести табличку множення за допомогою цикла while
+
+
+
+# def calculator():
+#     i = 1
+#     size = 9
+#     while i <= 9:
+#         j = 1
+#         while j <= size:
+#             res = j * i
+#             print(' ' if res//10 else '  ', end='')
+#             print(res, end='')
+#             j += 1
+#         print()
+#         i += 1
+#
+# calculator()
+
+
 # 4) переробити це завдання під меню
 
+menu = ['l = [22, 3,5,2,8,2,-23, 8,23,5]','1. Знайти мінімальне число в списку.', '2. Видалити всі дублікати значень.', '3. Замінити кожне четверте значення на "Х".', '4. Вивести квадрат із зірочок.', '5. Вивести табличку множення.', 'Виберіть пункт із меню: ']
 
+menu_choice = input('\n'.join(menu))
+l = [22, 3,5,2,8,2,-23, 8,23,5]
+if menu_choice == '1':
+    def min_list_num(l):
+        print(min(l))
+    min_list_num(l)
+elif menu_choice == '2':
+    def set_list(l):
+        copy = l.copy()
+        print(set(copy))
+    set_list(l)
+elif menu_choice == '3':
+    def change_to_x(l):
+        copy = l.copy()
+        print(['X' if not (i+1) % 4 else num for i, num in enumerate(copy)])
+    change_to_x(l)
+elif menu_choice == '4':
+    def square(x):
+        for i in range(x):
+            if i == 0 or i == x-1:
+                print('*'*x)
+            else:
+                print('*'+' '*(x-2)+'*')
+    square(7)
+elif menu_choice == '5':
+    def calculator():
+        i = 1
+        size = 9
+        while i <= 9:
+            j = 1
+            while j <= size:
+                res = j * i
+                print(' ' if res//10 else '  ', end='')
+                print(res, end='')
+                j += 1
+            print()
+            i += 1
+
+    calculator()
